@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>さくら歯科・矯正歯科 Clinic | 痛みに配慮した安心の歯科医療</title>
+  <style>
+    /* --------------------------------------------------
+       RESET & DESIGN TOKENS
+    -------------------------------------------------- */
+    :root {
+      --primary-color: #0d9488;       /* Teal 600 - 清潔感と信頼感 */
+      --primary-hover: #0f766e;       /* Teal 700 */
+      --secondary-color: #f97316;     /* Orange 500 - 予約誘導の視認性高アクセント */
+      --secondary-hover: #ea580c;     /* Orange 600 */
+      --bg-light: #f8fafc;            /* Slate 50 */
+      --bg-card: #ffffff;
+      --text-main: #1e293b;           /* Slate 800 - 視認性の高いダークグレー */
+      --text-muted: #64748b;          /* Slate 500 */
+      --border-color: #e2e8f0;       /* Slate 200 */
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* --------------------------------------------------
+       LAYOUT & UTILITIES
+    -------------------------------------------------- */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .section-padding {
+      padding-top: 4.5rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-subtitle {
+      color: var(--primary-color);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 3px;
+      background-color: var(--secondary-color);
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--secondary-color);
+      color: #ffffff;
+      box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.39);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--secondary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }
+
+    /* --------------------------------------------------
+       HEADER & NAVIGATION
+    -------------------------------------------------- */
+    .header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-sm);
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-color);
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .tel-info {
+      text-align: right;
+    }
+
+    .tel-number {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      line-height: 1.1;
+    }
+
+    .tel-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--text-main);
+      margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    /* --------------------------------------------------
+       HERO SECTION
+    -------------------------------------------------- */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+      padding: 4rem 0 5rem;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background-color: rgba(13, 148, 136, 0.1);
+      color: var(--primary-color);
+      padding: 0.375rem 0.875rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 2.25rem;
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 2.75rem;
+      }
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-image-box {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background-color: #cbd5e1;
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --------------------------------------------------
+       FEATURES SECTION (当院の強み)
+    -------------------------------------------------- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-card {
+      background-color: var(--bg-card);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-icon-wrap {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(13, 148, 136, 0.1);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* --------------------------------------------------
+       SERVICES SECTION (診療内容)
+    -------------------------------------------------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-img {
+      height: 160px;
+      background-color: #cbd5e1;
+      position: relative;
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-body {
+      padding: 1.25rem;
+    }
+
+    .service-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .service-text {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* --------------------------------------------------
+       DOCTOR & CLINIC INFO
+    -------------------------------------------------- */
+    .doctor-box {
+      background-color: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .doctor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .doctor-grid {
+        grid-template-columns: 280px 1fr;
+      }
+    }
+
+    .doctor-photo {
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      width: 100%;
+      background-color: #cbd5e1;
+    }
+
+    .doctor-role {
+      font-size: 0.875rem;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    .doctor-name {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .doctor-bio {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* --------------------------------------------------
+       ACCESS & HOURS (診療時間・交通アクセス)
+    -------------------------------------------------- */
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .access-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .schedule-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    .schedule-table th, 
+    .schedule-table td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 0.5rem;
+    }
+
+    .schedule-table th {
+      background-color: rgba(13, 148, 136, 0.05);
+      font-weight: 700;
+    }
+
+    .access-info-list {
+      margin-top: 1rem;
+    }
+
+    .access-info-item {
+      display: flex;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .access-info-label {
+      width: 90px;
+      font-weight: 700;
+      color: var(--primary-color);
+      flex-shrink: 0;
+    }
+
+    .map-dummy {
+      width: 100%;
+      height: 250px;
+      background-color: #e2e8f0;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    /* --------------------------------------------------
+       MODAL & RESERVATION FORM
+    -------------------------------------------------- */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 550px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .modal-backdrop.is-active .modal-container {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .modal-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 0.375rem;
+    }
+
+    .form-label .required {
+      color: var(--secondary-color);
+      margin-left: 0.25rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* --------------------------------------------------
+       FOOTER & MOBILE STICKY CTA
+    -------------------------------------------------- */
+    .footer {
+      background-color: #0f172a;
+      color: #94a3b8;
+      padding-top: 3rem;
+      padding-bottom: 5rem; /* スマホ固定フッター用のスペース確保 */
+      font-size: 0.875rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+      .footer {
+        padding-bottom: 3rem;
+      }
+    }
+
+    .footer-logo {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .footer-copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #1e293b;
+      color: #64748b;
+    }
+
+    /* モバイル固定固定CTA（画面下に常時表示） */
+    .mobile-sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      border-top: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      display: flex;
+      gap: 0.75rem;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+      z-index: 90;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-sticky-cta {
+        display: none;
+      }
+      .nav-list {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .nav-list {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.25rem;
+        box-shadow: var(--shadow-md);
+        display: none;
+      }
+
+      .nav-list.is-active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .header-cta .tel-info, 
+      .header-cta .btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+          </svg>
+          あおがい歯科・矯正歯科
+        </a>
+
+        <nav>
+          <ul class="nav-list" id="navList">
+            <li><a href="#features" class="nav-link">当院の強み</a></li>
+            <li><a href="#services" class="nav-link">診療案内</a></li>
+            <li><a href="#doctor" class="nav-link">医師紹介</a></li>
+            <li><a href="#access" class="nav-link">アクセス・時間</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-cta">
+          <div class="tel-info">
+            <div class="tel-number">03-5678-9012</div>
+            <div class="tel-time">受付: 平日 9:00-18:30</div>
+          </div>
+          <button class="btn btn-primary open-modal-btn">
+            Web診療予約
+          </button>
+        </div>
+
+        <button class="hamburger" id="hamburgerBtn" aria-label="メニューを開く">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-tag">丁寧な予防と痛みに配慮した治療</span>
+          <h1 class="hero-title">一生涯、自分の歯で<br>美味しく食べるために。</h1>
+          <p class="hero-description">
+            さくら歯科では、丁寧なカウンセリングと最新の設備で「怖くない・痛みの少ない」歯科治療を提供します。患者様一人ひとりに寄り添ったオーダーメイド予防プログラムをご提案。
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary open-modal-btn">24時間 Web予約受付</button>
+            <a href="tel:0356789012" class="btn btn-outline">お電話での相談</a>
+          </div>
+        </div>
+        <div class="hero-image-box">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="明るく清潔な歯科クリニックの診察室">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="section-padding">
+    <div class="container">
+      <div class="section-title-wrap">
+        <p class="section-subtitle">OUR STRENGTHS</p>
+        <h2 class="section-title">当院が選ばれる3つの理由</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          </div>
+          <h3 class="feature-title">痛みに最大限配慮した治療</h3>
+          <p class="feature-desc">表面麻酔の塗布や超極細針を使用し、麻酔時のチクッとした痛みを極限まで軽減。歯科治療が苦手な方も安心して受診していただけます。</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
+          <h3 class="feature-title">徹底した衛生管理・感染対策</h3>
+          <p class="feature-desc">世界基準クラスBの高度な滅菌器を完備。患者様ごとに器具を個包装・交換し、常に安全かつクリーンな環境で診療を行います。</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          </div>
+          <h3 class="feature-title">視覚的なわかりやすい事前説明</h3>
+          <p class="feature-desc">口内カメラやCT画像を用いて現状をモニタで可視化。「なぜこの治療が必要か」をご納得いただけるまで丁寧にご説明します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="section-padding" style="background-color: #f1f5f9;">
+    <div class="container">
+      <div class="section-title-wrap">
+        <p class="section-subtitle">MEDICAL SERVICES</p>
+        <h2 class="section-title">診療案内</h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=500&q=80" alt="一般歯科・虫歯治療">
+          </div>
+          <div class="service-body">
+            <h3 class="service-title">一般歯科（虫歯・歯周病）</h3>
+            <p class="service-text">可能な限り「削らない・抜かない」治療を優先。早期発見と的確な処置で歯を長持ちさせます。</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=500&q=80" alt="予防・クリーニング">
+          </div>
+          <div class="service-body">
+            <h3 class="service-title">予防歯科・PMTC</h3>
+            <p class="service-text">定期的なプロによる口腔クリーニングで、虫歯や歯周病の原因となるバイオフィルムを除去します。</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=500&q=80" alt="小児歯科">
+          </div>
+          <div class="service-body">
+            <h3 class="service-title">小児歯科</h3>
+            <p class="service-text">お子様が歯医者を嫌いにならないよう、段階を踏んだ丁寧で優しいペース配分で進めます。</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=500&q=80" alt="マウスピース矯正">
+          </div>
+          <div class="service-body">
+            <h3 class="service-title">矯正歯科・審美歯科</h3>
+            <p class="service-text">目立ちにくいマウスピース矯正やセラミック治療、ホワイトニングで美しい歯並びと笑顔をサポート。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCTOR SECTION -->
+  <section id="doctor" class="section-padding">
+    <div class="container">
+      <div class="section-title-wrap">
+        <p class="section-subtitle">DOCTOR PROFILE</p>
+        <h2 class="section-title">院長挨拶</h2>
+      </div>
+
+      <div class="doctor-box">
+        <div class="doctor-grid">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" alt="院長の顔写真" class="doctor-photo">
+          <div class="doctor-info">
+            <span class="doctor-role">さくら歯科・矯正歯科 院長</span>
+            <h3 class="doctor-name">桜井 健太 <span style="font-size:1rem; font-weight:normal; color:var(--text-muted);">(Kenta Sakurai)</span></h3>
+            <p class="doctor-bio">
+              「歯医者＝痛くて怖い場所」というイメージを変えたいという思いで開院いたしました。<br>
+              お口の健康は、全身の健康や生活の質（QOL）に直結しています。当院では一時の治療で終わらせるのではなく、10年後・20年後を見据えた予防・メンテナンスを大切にしています。気になることがあれば、どんな小さなことでもお気軽にご相談ください。
+            </p>
+            <p style="font-weight: 700; color: var(--primary-color); font-size: 0.9rem;">
+              経歴：東京医科歯科大学 歯学部卒業 / 都内総合病院 歯科口腔外科勤務を経て当院開院
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS & CLINIC HOURS -->
+  <section id="access" class="section-padding" style="background-color: #f1f5f9;">
+    <div class="container">
+      <div class="section-title-wrap">
+        <p class="section-subtitle">ACCESS & HOURS</p>
+        <h2 class="section-title">診療時間・アクセス</h2>
+      </div>
+
+      <div class="access-grid">
+        <!-- 診療時間表 -->
+        <div>
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem;">診療時間</h3>
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>診療時間</th>
+                  <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>09:00 - 13:00</th>
+                  <td>●</td><td>●</td><td>-</td><td>●</td><td>●</td><td>▲</td><td>-</td>
+                </tr>
+                <tr>
+                  <th>14:30 - 18:30</th>
+                  <td>●</td><td>●</td><td>-</td><td>●</td><td>●</td><td>▲</td><td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            ※ 水曜・日曜・祝日は休診日となります。<br>
+            ※ ▲ 土曜日の午後は 14:00 - 17:00 までの診療です。
+          </p>
+        </div>
+
+        <!-- 医院住所・アクセス -->
+        <div>
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem;">医院概要</h3>
+          <div class="access-info-list">
+            <div class="access-info-item">
+              <span class="access-info-label">医院名</span>
+              <span>さくら歯科・矯正歯科</span>
+            </div>
+            <div class="access-info-item">
+              <span class="access-info-label">所在地</span>
+              <span>〒100-0001 東京都千代田区桜木町1-2-3 さくらビル2F</span>
+            </div>
+            <div class="access-info-item">
+              <span class="access-info-label">最寄駅</span>
+              <span>○○線「桜木町駅」北口 徒歩2分（駐車場2台完備）</span>
+            </div>
+            <div class="access-info-item">
+              <span class="access-info-label">電話番号</span>
+              <span>03-5678-9012</span>
+            </div>
+          </div>
+
+          <div class="map-dummy">
+            [アクセスマップ 位置情報]
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="footer-logo">さくら歯科・矯正歯科</a>
+          <p style="margin-bottom: 1rem;">〒100-0001 東京都千代田区桜木町1-2-3 さくらビル2F<br>TEL: 03-5678-9012</p>
+        </div>
+        <div>
+          <h4 style="color: #fff; font-size: 1rem; margin-bottom: 1rem;">コンテンツ</h4>
+          <ul>
+            <li style="margin-bottom: 0.5rem;"><a href="#features">当院の強み</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="#services">診療案内</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="#doctor">医師紹介</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #fff; font-size: 1rem; margin-bottom: 1rem;">診療科目</h4>
+          <ul>
+            <li style="margin-bottom: 0.5rem;">虫歯・歯周病治療</li>
+            <li style="margin-bottom: 0.5rem;">予防歯科・PMTC</li>
+            <li style="margin-bottom: 0.5rem;">小児歯科</li>
+            <li style="margin-bottom: 0.5rem;">マウスピース矯正</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        &copy; Sakura Dental & Orthodontic Clinic. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY BOTTOM CTA -->
+  <div class="mobile-sticky-cta">
+    <a href="tel:0356789012" class="btn btn-outline" style="flex: 1; padding: 0.6rem; font-size: 0.875rem;">
+      電話問合せ
+    </a>
+    <button class="btn btn-primary open-modal-btn" style="flex: 2; padding: 0.6rem; font-size: 0.875rem;">
+      24時間 Web予約
+    </button>
+  </div>
+
+  <!-- RESERVATION MODAL -->
+  <div class="modal-backdrop" id="reservationModal">
+    <div class="modal-container">
+      <button class="modal-close" id="modalCloseBtn" aria-label="閉じる">&times;</button>
+      <h3 class="modal-title">Web診療予約</h3>
+      <p class="modal-desc">ご希望の診療日時・内容を入力してください。</p>
+
+      <form id="reservationForm">
+        <div class="form-group">
+          <label class="form-label" for="userName">お名前<span class="required">*</span></label>
+          <input type="text" id="userName" class="form-control" required placeholder="例: 桜井 太郎">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="userTel">電話番号<span class="required">*</span></label>
+          <input type="tel" id="userTel" class="form-control" required placeholder="例: 09012345678">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="serviceType">ご相談・診療内容<span class="required">*</span></label>
+          <select id="serviceType" class="form-control" required>
+            <option value="">選択してください</option>
+            <option value="checkup">初診検診・クリーニング</option>
+            <option value="pain">歯の痛み・トラブル</option>
+            <option value="ortho">矯正歯科のご相談</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reserveDate">ご希望日<span class="required">*</span></label>
+          <input type="date" id="reserveDate" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary form-submit-btn">予約内容を送信する</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT (VANILLA JS) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. スマホ向けハンバーガーメニュー展開
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const navList = document.getElementById('navList');
+
+      if (hamburgerBtn && navList) {
+        hamburgerBtn.addEventListener('click', () => {
+          navList.classList.toggle('is-active');
+        });
+
+        // リンククリック時にメニューを閉じる
+        navList.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navList.classList.remove('is-active');
+          });
+        });
+      }
+
+      // 2. モーダル ダイアログ制御
+      const modal = document.getElementById('reservationModal');
+      const openModalBtns = document.querySelectorAll('.open-modal-btn');
+      const closeModalBtn = document.getElementById('modalCloseBtn');
+      const reservationForm = document.getElementById('reservationForm');
+
+      const openModal = () => {
+        if (modal) {
+          modal.classList.add('is-active');
+          document.body.style.overflow = 'hidden'; // 背面のスクロール防止
+        }
+      };
+
+      const closeModal = () => {
+        if (modal) {
+          modal.classList.remove('is-active');
+          document.body.style.overflow = '';
+        }
+      };
+
+      openModalBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        });
+      });
+
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+      }
+
+      // モーダルの背景クリックで閉じる
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      }
+
+      // 3. 予約フォーム送信擬似処理
+      if (reservationForm) {
+        reservationForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById('userName').value;
+          const date = document.getElementById('reserveDate').value;
+
+          // インラインフィードバック（本番環境ではAPI通信）
+          alert(`${name} 様\n\n${date} のご予約申請を受け付けました。\n当院からの確認連絡をもって予約確定となります。`);
+          
+          reservationForm.reset();
+          closeModal();
+        });
+      }
+
+      // 4. 日付選択インプットの最小値を本日に設定
+      const dateInput = document.getElementById('reserveDate');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+      }
+    });
+  </script>
+</body>
+</html>
